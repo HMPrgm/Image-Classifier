@@ -5,6 +5,10 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 
+# Define parameters for the model
+training_epochs = 3
+
+
 # Define transformations for the training and test sets
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -51,7 +55,7 @@ def main():
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
     # Training the network
-    for epoch in range(10):  # loop over the dataset multiple times
+    for epoch in range(training_epochs):  # loop over the dataset multiple times
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             inputs, labels = data
