@@ -76,28 +76,3 @@ for image_path in image_paths:
 
     # Display the image with the predicted category
     imshow(input_image.squeeze(), f'Predicted: {classes[predicted.item()]}')
-
-# Example usage with CIFAR-10 test dataset
-def show_test_images():
-    testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
-
-    dataiter = iter(testloader)
-    images, labels = dataiter.next()
-
-    # Print images
-    imshow(torchvision.utils.make_grid(images), 'GroundTruth: ' + ' '.join('%5s' % classes[labels[j]] for j in range(4)))
-
-    # Perform inference on the batch
-    with torch.no_grad():
-        outputs = model(images)
-        _, predicted = torch.max(outputs, 1)
-
-    # Print predicted labels
-    print('Predicted: ', ' '.join('%5s' % classes[predicted[j]] for j in range(4)))
-
-    # Display the images with predicted categories
-    imshow(torchvision.utils.make_grid(images), 'Predicted: ' + ' '.join('%5s' % classes[predicted[j]] for j in range(4)))
-
-if __name__ == '__main__':
-    show_test_images()
