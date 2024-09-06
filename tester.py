@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
+image_paths = ['./testImages/Frog.jpg','./testImages/cat.jpg']  # Add paths to your images here
+
 # Define the model architecture
 class Net(nn.Module):
     def __init__(self):
@@ -62,7 +64,6 @@ def imshow(img, title):
     plt.show()
 
 # Load and preprocess the image
-image_paths = ['./testImages/Frog.jpg','./testImages/cat.jpg']  # Add paths to your images here
 for image_path in image_paths:
     input_image = preprocess_image(image_path)
 
